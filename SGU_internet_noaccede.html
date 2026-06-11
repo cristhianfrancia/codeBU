@@ -1,523 +1,1322 @@
 <!DOCTYPE html>
+
 <html>
- <head>
+
+<head>
+
   <!-- 
+
     Proyecto: Plantillas
+
     Creado por: Cristhian Francia
+
     Año: 2020
+
     Derechos reservados © Cristhian Francia
+
   -->
+
+    <title>Plantillas - SGU - Internet - No accede</title>
+
     <style>
-      body {
-        font-family: Calibri, Calibri, sans-serif;
-      }
+
+        body {  
+
+            font-family: Calibri, Arial, sans-serif;
+
+        }
+
+
 
         .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
+
+            width: 95%;
+
+            max-width: 1000px auto;
+
+            margin: 10px auto;
+
             background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-            padding: 50px;
+
+            border-radius: 20px;
+
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+
+            padding: 30px;
+
             position: relative;
+
             transition: box-shadow 0.3s ease;
+
         }
+
+
 
         .container:hover {
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+
         }
+
+
+
+        /* --- ESTILO PARA EL TÍTULO ELEGANTE ESTILO APPLE --- */
+
+        .elegant-title {
+
+            text-align: center;
+
+            color: #1d1d1f;
+
+            font-size: 1.4rem;
+
+            font-weight: 600;
+
+            letter-spacing: -0.5px;
+
+            margin-top: 15px;
+
+            margin-bottom: 30px;
+
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+
+        }
+
+        /* -------------------------------------- */
+
+
 
         .icon-animation {
+
             position: absolute;
+
             top: 10px;
+
             right: 10px;
+
             width: 40px;
+
             height: 40px;
+
             background-color: #007BFF;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             animation: spin 2s linear infinite;
+
         }
+
+
 
         .icon-animation::before {
-            content: "📱";
+
+            content: "🟡";
+
             font-size: 1.5rem;
+
             color: white;
-        }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
         }
 
 
-        .input-container {
-            display: flex;
-            align-items: center;
-            transition: transform 0.3s ease;
-        }
+
+      @keyframes spin {
+
+          from { transform: rotate(0deg); }
+
+          to { transform: rotate(360deg); }
+
+      }
 
 
-        .input-container:hover {
-            transform: scale(1.00);
-        }
+
+      .input-container {
+
+          display: flex;
+
+          align-items: center;
+
+          transition: transform 0.3s ease;
+
+      }
+
+
+
+      .input-container:hover {
+
+          transform: scale(1.00);
+
+      }
+
 
 
       .input-container label {
+
         width: 50%;
+
       }
 
 
-        .input-container input {
-            width: 50%;
-            padding: 4px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
+
+      .input-container input, .input-container select {
+
+          width: 50%;
+
+          padding: 4px;
+
+          border: 1px solid #ccc;
+
+          border-radius: 4px;
+
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      }
 
 
-        .input-container input:focus {
-            border-color: #007BFF;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
 
-      /* Estilos responsive */
+      .input-container input:focus, .input-container select:focus {
+
+          border-color: #007BFF;
+
+          outline: none;
+
+          box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+
+      }
+
+
+
       @media screen and (max-width: 600px) {
+
         .input-container {
+
           flex-direction: column;
+
         }
-        .input-container label, .input-container input {
+
+        .input-container label, .input-container input, .input-container select {
+
           width: 100%;
+
         }
+
       }
+
 
 
       .resultado-label {
+
         color: #007BFF;
+
       }
+
       .dark-mode .resultado-label {
+
         color: yellow;
+
       }
 
 
-        .ruta-container {
-            background-color: #fff5e9;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            border-left: 4px solid #e67a00;
-            font-size: 0.9rem;
-            color: #333;
-        }
 
-        hr {
-            border: 1px solid #e67a00;
-            margin: 10px 0;
-        }
+      .ruta-container {
 
-        button {
-            background-color: #e67a00;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            margin: 5px;
-        }
+          background-color: #fff5e9;
 
-        button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
+          padding: 10px;
 
-        button:active {
-            background-color: #004085;
-            transform: scale(0.98);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+          border-radius: 4px;
 
-        button:focus {
-            outline: none;
-        }
+          margin: 10px 0;
 
-        #resultado {
-            margin: 15px 0;
-            font-size: 0.9rem;
-            background-color: #fff5e9;
-            padding: 10px;
-            border-left: 4px solid #e67a00;
-            white-space: pre-line;
-            min-height: 50px;
-            transition: background-color 0.3s ease;
-        }
+          border-left: 4px solid #e67a00;
+
+          font-size: 0.9rem;
+
+          color: #333;
+
+      }
 
 
-      /* Estilos para el contenedor de la vista previa */
-      #imagePopup {
+
+      hr {
+
+          border: 1px solid #e67a00;
+
+          margin: 10px 0;
+
+      }
+
+
+
+      button {
+
+          background-color: #e67a00;
+
+          color: white;
+
+          padding: 10px 15px;
+
+          border: none;
+
+          border-radius: 5px;
+
+          cursor: pointer;
+
+          transition: background-color 0.3s ease, transform 0.3s ease;
+
+          margin: 5px;
+
+      }
+
+
+
+      button:hover {
+
+          background-color: #0056b3;
+
+          transform: scale(1.05);
+
+      }
+
+
+
+      button:active {
+
+          background-color: #004085;
+
+          transform: scale(0.98);
+
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      }
+
+
+
+      button:focus {
+
+          outline: none;
+
+      }
+
+
+
+      #resultado {
+
+          margin: 15px 0;
+
+          font-size: 0.9rem;
+
+          background-color: #fff5e9;
+
+          padding: 10px;
+
+          border-left: 4px solid #e67a00;
+
+          white-space: pre-line;
+
+          min-height: 50px;
+
+          transition: background-color 0.3s ease;
+
+      }
+
+
+
+      #imagePopupTip, #imagePopupLimiteMB, #imagePopupIMEI, #imagePopupNavegacion, #imagePopupMarca, #imagePopupBarring, #imagePopupMaps {
+
         display: none;
+
         position: fixed;
+
         top: 0;
+
         left: 0;
+
         right: 0;
+
         bottom: 0;
+
         background-color: rgba(0, 0, 0, 0.8);
+
         text-align: center;
+
+        z-index: 1000;
+
       }
 
-      /* Estilos para la imagen de la vista previa */
-      #imagePopup img {
-        max-width: 100%;
-        max-height: 100vh;
-        margin-top: 20px;
+
+
+      #imagePopupTip img, #imagePopupLimiteMB img, #imagePopupIMEI img, #imagePopupNavegacion img, #imagePopupMarca img, #imagePopupBarring img, #imagePopupMaps img {
+
+        max-width: 90%;
+
+        max-height: 90vh;
+
+        margin-top: 5vh;
+
       }
 
-      /* Estilos para el botón de cerrar */
-      .close-button {
+
+
+    .close-button, .close-button2, .close-button3, .close-button4, .close-button5, .close-button6, .close-button8 {
+
         position: absolute;
-        top: 10px;
-        left: 50%;
-        background-color: #fff;
-        color: #000;
+
+        top: 20px;
+
+        right: 20px;
+
+        background-color: white;
+
+        color: black;
+
         border: none;
-        padding: 8px 16px;
-        font-size: 14px;
+
+        padding: 10px 20px;
+
+        font-size: 16px;
+
         cursor: pointer;
-      }
+
+        border-radius: 5px;
+
+    }
+
+
+
+    .footer-autor {
+
+      text-align: center;
+
+      margin-top: 30px;
+
+      padding: 15px;
+
+      font-size: 0.8rem;
+
+      color: #aaa;
+
+      border-top: 1px solid #eee;
+
+      user-select: none;
+
+    }
+
+    .footer-autor strong {
+
+      color: var(--bitel-blue);
+
+    }
+
 
 
     </style>
-  </head>
+
+</head>
+
+<body oncontextmenu="return false"> 
+
+  <div class="container">
+
+    <div class="icon-animation"></div>
 
 
-<p style="color: red"><strong>Tipificación: </strong></p>
 
-        <div class="ruta-container">
-Pedido SGU / Pedido SGU / Problemas SGU / Calidad / Sin servicio y está al día en sus pagos (con check a BO ✅)
-        </div>
-
-        <hr />
-
-        <div class="icon-animation"></div>
+    <h2 class="elegant-title">Pedido SGU: No accede - Desconexiones</h2>
 
 
-    <label style="color: red;"><strong>Plantilla:</strong></label>
+
+    <label style="color: red;"><strong>1. Plantilla:</strong></label>
+
     <p></p>
 
 
 
+    <center class="code-container">
 
+    <p>
 
-<center class="code-container">
-<p>
-<input type="number" id="label0" oninput="checkLength(this)" placeholder="(Número del que llama)" style="color: #007BFF;" />
-// <input type="text" id="label0_1" oninput="updateResultadoOutput()" placeholder="(Problema del cliente)" style="color: #007BFF;" />
-// Se genera Pedido SGU
-</p>
-</center>
+    <input type="number" id="label0" oninput="checkLength(this)" placeholder="(Número del que llama)" style="color: #007BFF;" />
 
+    // El cliente no puede conectarse a internet en ningún momento, sin importar la red.
 
-<div class="input-container">
-<label for="label_Linea">- Línea:</label>
-<input type="text" id="label_Linea" oninput="updateResultadoOutput()" placeholder="(Línea del inconveniente)" style="color: #007BFF;" />
-</div>
+    // "Se genera incidencia a BO123"
 
+    </p>
 
-<div class="input-container">
-<label for="label_Plan">- Plan:</label>
-<input type="text" id="label_Plan" oninput="updateResultadoOutput()" placeholder="(Plan que figura en Customer Care)" style="color: #007BFF;" />
-</div>
+    </center>
 
-
-<div class="input-container">
-  <label for="label_FechaHora">- Fecha y hora del inconveniente:</label>
-  <input type="datetime-local" id="label_FechaHora" oninput="updateResultadoOutput()" />
-</div>
 
 
     <div class="input-container">
-      <label for="label_Cobertura">- Indicador de cobertura:</label>
+
+    <label for="label_Linea">- Número de consulta:</label>
+
+    <input type="text" id="label_Linea" oninput="checkLength(this)" placeholder="(Número del inconveniente)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div class="input-container">
+
+      <label for="label_MB">- Tiene MB o data ilimitada para navegar (Si/No):</label>
+
+      <select id="label_MB" onchange="updateResultadoOutput()">
+
+        <option value="">Seleccionar</option>
+
+        <option value="Si">Si</option>
+
+      </select>
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_LimiteMB">- Fecha limite de uso de MB:
+
+    <a href="#" onclick="return showImagePopupLimiteMB(event)">👉Ver ejemplo👈</a></label>
+
+    <input type="text" id="label_LimiteMB" oninput="updateResultadoOutput()" placeholder="(Fecha de expiración en PCRF u OCS)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div id="imagePopupLimiteMB">
+
+    <button class="close-button2" onclick="hideImagePopupLimiteMB()">CERRAR</button>
+
+    <img src="https://i.postimg.cc/qBmz2Jpr/Pedido-SGU-Internet-No-accede-Sistema-Limite-MB.png">
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_IMEI">- Existe cambio de IMEI?:
+
+    <a href="#" onclick="return showImagePopupIMEI(event)">👉Ver ejemplo👈</a></label>
+
+    <select id="label_IMEI" onchange="updateResultadoOutput()">
+
+      <option value="">Seleccionar</option>
+
+      <option value="Si">Si</option>
+
+      <option value="No">No</option>
+
+      <option value="-">-</option>
+
+    </select>
+
+    </div>
+
+
+
+    <div id="imagePopupIMEI">
+
+    <button class="close-button3" onclick="hideImagePopupIMEI()">CERRAR</button>
+
+    <img src="https://i.postimg.cc/W4bMs9n6/Pedido-SGU-Internet-No-accede-Sistema-IMEI.png">
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_FechaNoaccede">- Fecha desde cuando no accede:</label>
+
+    <input type="text" id="label_FechaNoaccede" oninput="updateResultadoOutput()" placeholder="(DD/MM/AAAA)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_FechaNavegacion">- Fecha y hora de la ultima navegacion segun consumo:
+
+    <a href="#" onclick="return showImagePopupNavegacion(event)">👉Ver ejemplo👈</a></label>
+
+    <input type="text" id="label_FechaNavegacion" oninput="updateResultadoOutput()" placeholder="(Pegar lo que sale en plantilla de customer care)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div id="imagePopupNavegacion">
+
+    <button class="close-button4" onclick="hideImagePopupNavegacion()">CERRAR</button>
+
+    <img src="https://i.postimg.cc/252JcZ12/Pedido-SGU-Internet-No-accede-Sistema-Ult-Navegacion.png">
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_Marca">- Marca y modelo de equipo:
+
+    <a href="#" onclick="return showImagePopupMarca(event)">👉Ver ejemplo👈</a></label>
+
+    <input type="text" id="label_Marca" oninput="updateResultadoOutput()" placeholder="(Pegar lo que sale en plantilla de customer care)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div id="imagePopupMarca">
+
+    <button class="close-button5" onclick="hideImagePopupMarca()">CERRAR</button>
+
+    <img src="https://i.postimg.cc/rw2vKc6C/Pedido-SGU-Internet-No-accede-Sistema-Marca.png">
+
+    </div>
+
+
+
+    <div class="input-container">
+
+      <label for="label_Cobertura">- Cobertura que presenta problema (3G/4G/5G):</label>
+
       <select id="label_Cobertura" onchange="updateResultadoOutput()">
 
         <option value="">Seleccionar</option>
-        <option value="-">-</option>
-        <option value="E">E</option>
-        <option value="3G">3G</option>
-        <option value="H">H</option>
-        <option value="H+">H+</option>
-       <option value="4G LTE">4G LTE</option>
+
+        <option value="3G">3G | 3.5G | H | H+</option>
+
+       <option value="4G LTE">4G | LTE</option>
+
        <option value="5G">5G</option>
+
+        <option value="E">E</option>
+
+        <option value="-">-</option>
+
       </select>
+
     </div>
 
-
-<div class="input-container">
-<label for="label_BarraSeñal">- Barra de Señal:</label>
-<input type="text" id="label_BarraSeñal" oninput="updateResultadoOutput()" placeholder="(Lo que figura en la barra)" style="color: #007BFF;" />
-</div>
 
 
     <div class="input-container">
-      <label for="label_TipoInconveniente">- Tipo de inconveniente:</label>
-      <select id="label_TipoInconveniente" onchange="updateResultadoOutput()">
+
+    <label for="label_Barring">- Parámetros correctos (Barring) (Si/No):
+
+    <a href="#" onclick="return showImagePopupBarring(event)">👉Ver ejemplo👈</a></label>
+
+    <select id="label_Barring" onchange="updateResultadoOutput()">
 
         <option value="">Seleccionar</option>
-        <option value="-">-</option>
-        <option value="Internet">Internet</option>
-        <option value="Llamadas">Llamadas</option>
-        <option value="SMS">SMS</option>
-        <option value="Señal">Señal</option>
-      </select>
+
+        <option value="Si">Si</option>
+
+    </select>
+
     </div>
 
 
-<div class="input-container">
-<label for="label_EstadoLinea">- Estado de línea:</label>
-<input type="text" id="label_EstadoLinea" oninput="updateResultadoOutput()" style="color: #007BFF;" />
-</div>
 
+    <div id="imagePopupBarring">
 
-<div class="input-container">
-<label for="label_Parametros">- Parámetros correctos (Barring): </label>
-<input type="text" id="label_Parametros" oninput="updateResultadoOutput()" placeholder="(Barring)" style="color: #007BFF;" />
-</div>
+    <button class="close-button6" onclick="hideImagePopupBarring()">CERRAR</button>
 
-<div class="input-container">
-<label for="label_Direccion">- Dirección exacta del inconveniente: </label>
-<input type="text" id="label_Direccion" oninput="updateResultadoOutput()" placeholder="(Departamento, Provincia, Distrito, Dirección del inconveniente)" style="color: #007BFF;" />
-</div>
+    <img src="https://i.postimg.cc/hGK4Q6z6/Pedido-SGU-Internet-No-accede-Sistema-Barring.png">
 
-
-<div class="input-container">
-<label for="label_GoogleEarth">- Coordenadas Google Earth: <a href="#" onclick="return showImagePopup(event)">👉Clic para ver donde lo obtienes👈</a></label>
-<input type="text" id="label_GoogleEarth" oninput="updateResultadoOutput()" placeholder="(Ejemplo: -12.111846867998418, -77.00713689016001)" style="color: #007BFF;">
-</div>
-
-<div id="imagePopup">
-<button class="close-button" onclick="hideImagePopup()">CERRAR</button>
-<img src="https://i.postimg.cc/fyJXFWkg/Google-Maps.png">
-</div>
-
-
-<div class="input-container">
-<label for="label_DetalleInc">- Detalle del inconveniente: </label>
-<input type="text" id="label_DetalleInc" oninput="updateResultadoOutput()" placeholder="(Descripción del problema)" style="color: #007BFF;" />
-</div>
-
-
-<div class="input-container">
-<label for="labelID">- ID de llamada:</label>
-<input type="text" id="labelID" placeholder="(Sin $$_ _&&)" style="color: #007BFF;" />
-</div>
-
-
-<br />
-<hr />
-<br />
-
-
-<label style="color: red;"><strong>Resultado</strong></label>
-<p id="resultado" class="dark-mode-text"></p>
+    </div>
 
 
 
-<button onclick="copiarResultado()">Copiar</button> <button onclick="limpiarInputs()">Borrar</button>
+    <div class="input-container">
 
-<br /><br />
-<hr />
+    <label for="label_Direccion">- Dirección exacta del inconveniente: </label>
 
-<label style="color: red;"><strong>Speech de pedido SGU:</strong></label>
+    <input type="text" id="label_Direccion" oninput="updateResultadoOutput()" placeholder="(Ejemplo: Calle Garcia Robles Mz B Lote 35 Urb Reducto)" style="color: #007BFF;" />
 
-<p><span style="color: #007BFF">(Nombre del cliente)</span>, le confirmamos que hemos recibido y registrado su pedido con el código <span style="color: #007BFF">(CASSXXXXXXXXXX) o (CAPVXXXXXXXXXX)</span>. El plazo estimado de atención es de 03 días calendario. Nuestra respuesta será enviada vía mensaje de texto en 1 día hábil luego del plazo de atención.</p>
+    </div>
 
-<label style="color: red;"><strong>Despedida:</strong></label>
 
-<p><strong><span style="color: #01768b">🎧 Agente: </span></strong>  Eso sería todo de mi parte, Muchas gracias por comunicarse con Bitel. En breve recibirá un mensaje para calificar la atención brindada. </p>
 
-<br>
-Ejemplo de código de Pedido SGU:
-<br><br>
-<img src="https://i.postimg.cc/Y2FYwHwH/COD-Pedido-SGU.png">
-</div>
+    <div class="input-container">
 
-    <script>
+    <label for="label_GoogleEarth">- Coordenadas Google Earth: 
 
-window.onload = function() {
-    let fechaLimite = new Date("2025-12-31T23:59:59");
-    let fechaActual = new Date();
+    <a href="#" onclick="return showImagePopupMaps(event)">👉Ver ejemplo👈</a></label>
 
-    if (fechaActual > fechaLimite) {
-        document.body.innerHTML = "<h1 style='text-align:center; color:red; margin-top:20%;'>Revisar la variable de mantenimiento<br></h1><h5 style='text-align:center; color:red'>(Requiere actualización)</h5>";
-    }
-};
+    <input type="text" id="label_GoogleEarth" oninput="updateResultadoOutput()" placeholder="(Ejemplo: -12.111846867998418, -77.00713689016001)" style="color: #007BFF;">
+
+    </div>
+
+
+
+    <div id="imagePopupMaps">
+
+    <button class="close-button8" onclick="hideImagePopupMaps()">CERRAR</button>
+
+    <img src="https://i.postimg.cc/fyJXFWkg/Google-Maps.png">
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="label_DetalleInc">- Observaciones: </label>
+
+    <input type="text" id="label_DetalleInc" oninput="updateResultadoOutput()" placeholder="(Observaciones del inconveniente)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+
+
+    <div class="input-container">
+
+    <label for="label_BTS">- BTS: </label>
+
+    <input type="text" id="label_BTS" oninput="updateResultadoOutput()" placeholder="(BTS de la línea)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <div class="input-container">
+
+    <label for="labelID">- Codigo de llamada:</label>
+
+    <input type="text" id="labelID" placeholder="(Sin $$_ _&&)" style="color: #007BFF;" />
+
+    </div>
+
+
+
+    <br>
+
+    <p id="resultado" class="dark-mode-text"></p>
+
+
+
+    <button onclick="copiarResultado()">Copiar</button>
+
+    <button onclick="limpiarInputs()">Borrar</button>
+
+
+
+    <br />
+
+    <br />
+
+
+
+    <label style="color: red;"><strong>2. Tipificación:</strong></label>
+
+
+
+    <div class="ruta-container">
+
+    - <strong>Address:</strong> DIRECCIÓN DEL PROBLEMA, REFERENCIA DEL PROBLEMA, LUG@R: DEPARTAMENTO - PROVINCIA - DISTRITO
+
+    <br><br>
+
+    - <strong>Ruta:</strong> No full internet access / Pedido SGU / Pedido SGU / Problemas SGU / Calidad / Sin servicio y está al día en sus pagos (con check a BO ✅) 
+
+    <a href="#" onclick="return showImagePopupTip(event)"> 👉Ver ejemplo👈</a>
+
+
+
+    <div id="imagePopupTip">
+
+      <button class="close-button" onclick="hideImagePopupTip()">Cerrar</button>
+
+      <img src="https://i.postimg.cc/yNSkVrd2/Pedido-SGU-Internet-No-accede.png" alt="Imagen de vista previa 1">
+
+    </div>
+
+    </div>
+
+
+
+    <br />
+
+    <hr />
+
+    <br />
+
+
+
+    <label style="color: red;"><strong>3. Speech:</strong></label>
+
+
+
+    <p><strong><span style="color: #01768b">🎧 Agente: </span></strong> <span style="color: #007BFF">(Nombre del cliente)</span>, le confirmamos que hemos recibido y registrado su pedido con el código <span style="color: #007BFF">(CASSXXXXXXXXXX) o (CAPVXXXXXXXXXX)</span>. El plazo estimado de atención es de 03 días calendario. Nuestra respuesta será enviada vía mensaje de texto en 1 día hábil luego del plazo de atención.</p>
+
+
+
+    <label style="color: red;"><strong>4. Despedida:</strong></label>
+
+
+
+    <p><strong><span style="color: #01768b">🎧 Agente: </span></strong>  Eso sería todo de mi parte, Muchas gracias por comunicarse con Bitel. En breve recibirá un mensaje para calificar la atención brindada. </p>
+
+
+
+    <br><br>
+
+    <strong>Ejemplo de código para Pedido SGU:</strong>
+
+    <br><br>
+
+    <img src="https://i.postimg.cc/Y2FYwHwH/COD-Pedido-SGU.png">
+
+    </div>
+
+
+
+    <br><br><br><br><br><br>
+
+    <textarea id="textareaResultado" style="position: absolute; left: -9999px;"></textarea>
+
+
+
+    <div class="footer-autor">
+
+    Developed by c&f &copy; 2020 | All rights reserved.
+
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    document.addEventListener('contextmenu', event => {
+
+        event.preventDefault();
+
+        alert('El menú contextual (clic derecho) está deshabilitado.'); 
+
+    });
+
+
+
+    document.onkeydown = function(e) {
+
+        if (e.key === 'F12' || e.keyCode === 123) {
+
+            alert('Las herramientas de desarrollador están deshabilitadas.'); 
+
+            return false;
+
+        }
+
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.key === 'I')) {
+
+            return false;
+
+        }
+
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 74 || e.key === 'J')) {
+
+            return false;
+
+        }
+
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 67 || e.key === 'C')) {
+
+            return false;
+
+        }
+
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+
+            return false;
+
+        }
+
+    };
+
+
+
+    window.onload = function() {
+
+        let fechaLimite = new Date("2026-07-30T23:59:59");
+
+        let fechaActual = new Date();
+
+
+
+        if (fechaActual > fechaLimite) {
+
+            document.body.innerHTML = "<h1 style='text-align:center; color:red; margin-top:20%;'>Revisar la variable de mantenimiento<br></h1><h5 style='text-align:center; color:red'>(Requiere actualización)</h5>";
+
+        }
+
+    };
+
+
 
       const label0Input = document.querySelector("#label0");
-      const label0_1Input = document.querySelector("#label0_1");
+
+
 
       const label_LineaInput = document.querySelector("#label_Linea");
-      const label_PlanInput = document.querySelector("#label_Plan");
-      const label_FechaHoraInput = document.querySelector("#label_FechaHora");
+
+      const label_MBInput = document.querySelector("#label_MB");
+
+      const label_LimiteMBInput = document.querySelector("#label_LimiteMB");
+
+      const label_IMEIInput = document.querySelector("#label_IMEI");
+
+      const label_FechaNoaccedeInput = document.querySelector("#label_FechaNoaccede");
+
+      const label_FechaNavegacionInput = document.querySelector("#label_FechaNavegacion");
+
+      const label_MarcaInput = document.querySelector("#label_Marca");
+
       const label_CoberturaInput = document.querySelector("#label_Cobertura");
-      const label_BarraSeñalInput = document.querySelector("#label_BarraSeñal");
-      const label_TipoInconvenienteInput = document.querySelector("#label_TipoInconveniente");
-      const label_EstadoLineaInput = document.querySelector("#label_EstadoLinea");
-      const label_ParametrosInput = document.querySelector("#label_Parametros");
+
+      const label_BarringInput = document.querySelector("#label_Barring");
+
       const label_DireccionInput = document.querySelector("#label_Direccion");
+
       const label_GoogleEarthInput = document.querySelector("#label_GoogleEarth");
+
       const label_DetalleIncInput = document.querySelector("#label_DetalleInc");
+
+      const label_BTSInput = document.querySelector("#label_BTS");
+
       const labelIDInput = document.querySelector("#labelID");
+
       const resultadoOutput = document.querySelector("#resultado");
 
 
 
       label0Input.addEventListener("input", updateResultadoOutput);
-      label0_1Input.addEventListener("input", updateResultadoOutput);
+
+
 
       label_LineaInput.addEventListener("input", updateResultadoOutput);
-      label_PlanInput.addEventListener("input", updateResultadoOutput);
-      label_FechaHoraInput.addEventListener("input", updateResultadoOutput);
+
+      label_MBInput.addEventListener("change", updateResultadoOutput);
+
+      label_LimiteMBInput.addEventListener("input", updateResultadoOutput);
+
+      label_IMEIInput.addEventListener("change", updateResultadoOutput);
+
+      label_FechaNoaccedeInput.addEventListener("input", updateResultadoOutput);
+
+      label_FechaNavegacionInput.addEventListener("input", updateResultadoOutput);
+
+      label_MarcaInput.addEventListener("input", updateResultadoOutput);
+
       label_CoberturaInput.addEventListener("change", updateResultadoOutput);
-      label_BarraSeñalInput.addEventListener("input", updateResultadoOutput);
-      label_TipoInconvenienteInput.addEventListener("change", updateResultadoOutput);
-      label_EstadoLineaInput.addEventListener("input", updateResultadoOutput);
-      label_ParametrosInput.addEventListener("input", updateResultadoOutput);
+
+      label_BarringInput.addEventListener("Change", updateResultadoOutput);
+
       label_DireccionInput.addEventListener("input", updateResultadoOutput);
+
       label_GoogleEarthInput.addEventListener("input", updateResultadoOutput);
+
       label_DetalleIncInput.addEventListener("input", updateResultadoOutput);
+
+      label_BTSInput.addEventListener("input", updateResultadoOutput);
+
       labelIDInput.addEventListener("input", updateResultadoOutput);
 
 
-function formatDateToDDMMYYYYHHMM(dateString) {
-  if (!dateString) return ""; // Manejo para fechas nulas o no definidas
 
-  const dateParts = dateString.split("T"); // Separar fecha y hora
-  const date = dateParts[0];
-  const time = dateParts[1].slice(0, 5); // Tomar solo las primeras 5 letras para obtener HH:MM
-  const datePartsFormatted = date.split("-");
-  const day = datePartsFormatted[2];
-  const month = datePartsFormatted[1];
-  const year = datePartsFormatted[0];
-  return `${day}/${month}/${year} ${time}`;
-}
+    function formatDateToDDMMYYYYHHMM(dateString) {
+
+      if (!dateString) return ""; 
 
 
-  function formatDateToDDMMYYYY(dateString) {
-    const dateParts = dateString.split("-");
-    const day = dateParts[2];
-    const month = dateParts[1];
-    const year = dateParts[0];
-    return `${day}/${month}/${year}`;
-  }
 
-function updateResultadoOutput() {
+      const dateParts = dateString.split("T"); 
 
-const label0 = label0Input.value;
-const label0_1 = capitalizeFirstLetter(label0_1Input.value);
+      const date = dateParts[0];
 
-const label_Linea = label_LineaInput.value;
-const label_Plan = capitalizeName(label_PlanInput.value);
-const label_FechaHora = formatDateToDDMMYYYYHHMM(label_FechaHoraInput.value);
-const label_Cobertura = label_CoberturaInput.value;
-const label_BarraSeñal = label_BarraSeñalInput.value;
-const label_TipoInconveniente = label_TipoInconvenienteInput.value;
-const label_EstadoLinea = label_EstadoLineaInput.value;
-const label_Parametros = label_ParametrosInput.value;
-const label_Direccion = label_DireccionInput.value;
-const label_GoogleEarth = label_GoogleEarthInput.value;
-const label_DetalleInc = label_DetalleIncInput.value;
-const labelID = labelIDInput.value;
+      const time = dateParts[1].slice(0, 5); 
 
-resultadoOutput.innerHTML =`<span class="resultado-label">${label0}</span> // <span class="resultado-label">${label0_1}</span> // Se genera Pedido SGU
+      const datePartsFormatted = date.split("-");
 
-- Línea: <span class="resultado-label">${label_Linea}</span>
-- Plan: <span class="resultado-label">${label_Plan}</span>
-- Fecha y hora del inconveniente: <span class="resultado-label">${label_FechaHora}</span>
-- Indicador de cobertura (3G/4G): <span class="resultado-label">${label_Cobertura}</span>
-- Barras de señal: <span class="resultado-label">${label_BarraSeñal}</span>
-- Tipo de inconveniente: <span class="resultado-label">${label_TipoInconveniente}</span>
-- Estado de línea: <span class="resultado-label">${label_EstadoLinea}</span>
-- Parámetros correctos (Barring): <span class="resultado-label">${label_Parametros}</span>
-- Dirección exacta del inconveniente: <span class="resultado-label">${label_Direccion}</span>
-- Coordenadas Google Earth: <span class="resultado-label">${label_GoogleEarth}</span>
-- Detalle del inconveniente: <span class="resultado-label">${label_DetalleInc}</span>
-- $$_<span class="resultado-label">${labelID}</span>_&&`;
-}
+      const day = datePartsFormatted[2];
 
+      const month = datePartsFormatted[1];
 
- function capitalizeFirstLetter(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      const year = datePartsFormatted[0];
+
+      return `${day}/${month}/${year} ${time}`;
+
     }
 
-    function capitalizeName(input) {
-      return input
-        .toLowerCase()
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
+
+
+      function formatDateToDDMMYYYY(dateString) {
+
+        const dateParts = dateString.split("-");
+
+        const day = dateParts[2];
+
+        const month = dateParts[1];
+
+        const year = dateParts[0];
+
+        return `${day}/${month}/${year}`;
+
+      }
+
+
+
+    function updateResultadoOutput() {
+
+    const label0 = label0Input.value;
+
+    const label_Linea = label_LineaInput.value;
+
+    const label_MB = label_MBInput.value;
+
+    const label_LimiteMB = label_LimiteMBInput.value;
+
+    const label_IMEI = label_IMEIInput.value;
+
+    const label_FechaNoaccede = label_FechaNoaccedeInput.value;
+
+    const label_FechaNavegacion = label_FechaNavegacionInput.value;
+
+    const label_Marca = label_MarcaInput.value;
+
+    const label_Cobertura = label_CoberturaInput.value;
+
+    const label_Barring = label_BarringInput.value;
+
+    const label_Direccion = label_DireccionInput.value;
+
+    const label_GoogleEarth = label_GoogleEarthInput.value;
+
+    const label_DetalleInc = label_DetalleIncInput.value;
+
+    const label_BTS = label_BTSInput.value;
+
+    const labelID = labelIDInput.value;
+
+
+
+    resultadoOutput.innerHTML =`<span class="resultado-label">${label0}</span> // El cliente no puede conectarse a internet en ningún momento, sin importar la red. // "Se genera incidencia a BO123"
+
+
+
+    Número de consulta: <span class="resultado-label">${label_Linea}</span>
+
+    Tiene MB o data ilimitada para navegar (Si/No): <span class="resultado-label">Si</span>
+
+    Fecha limite de uso de MB: <span class="resultado-label">${label_LimiteMB}</span>
+
+    Existe cambio de IMEI?: <span class="resultado-label">${label_IMEI}</span>
+
+    Fecha desde cuando no accede: <span class="resultado-label">${label_FechaNoaccede}</span>
+
+    Fecha y hora de la ultima navegacion segun consumo: <span class="resultado-label">${label_FechaNavegacion}</span>
+
+    Marca y modelo de equipo: <span class="resultado-label">${label_Marca}</span>
+
+    Cobertura que presenta problema (3G/4G/5G): <span class="resultado-label">${label_Cobertura}</span>
+
+    Parámetros correctos (Barring) (Si/No): <span class="resultado-label">Si</span>
+
+    Dirección exacta del inconveniente: <span class="resultado-label">${label_Direccion}</span>
+
+    Coordenadas Google Earth: <span class="resultado-label">${label_GoogleEarth}</span>
+
+    Observaciones: <span class="resultado-label">${label_DetalleInc}</span>
+
+    BTS: <span class="resultado-label">${label_BTS}</span>
+
+    Codigo de llamada: $$_<span class="resultado-label">${labelID}</span>_&&`;
+
     }
 
-      function checkLength(input) {
-        if (input.value.length > 9) {
-          input.value = input.value.slice(0, 9);
+
+
+     function capitalizeFirstLetter(string) {
+
+          return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+
         }
+
+
+
+        function capitalizeName(input) {
+
+          return input
+
+            .toLowerCase()
+
+            .split(" ")
+
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+
+            .join(" ");
+
+        }
+
+
+
+          function checkLength(input) {
+
+            if (input.value.length > 9) {
+
+              input.value = input.value.slice(0, 9);
+
+            }
+
+          }
+
+
+
+          function copiarResultado() {
+
+            const resultadoTexto = resultadoOutput.innerText.trim();
+
+            const textarea = document.createElement("textarea");
+
+            textarea.value = resultadoTexto;
+
+            document.body.appendChild(textarea);
+
+            textarea.select();
+
+            document.execCommand("copy");
+
+            document.body.removeChild(textarea);
+
+            alert("Resultado copiado al portapapeles");
+
+          }
+
+
+
+          function limpiarInputs() {
+
+            label0Input.value = "";
+
+            label_LineaInput.value = "";
+
+            label_MBInput.value = "";
+
+            label_LimiteMBInput.value = "";
+
+            label_IMEIInput.value = "";
+
+            label_FechaNoaccedeInput.value = "";
+
+            label_FechaNavegacionInput.value = "";
+
+            label_MarcaInput.value = "";
+
+            label_CoberturaInput.value = "";
+
+            label_BarringInput.value = "";
+
+            label_DireccionInput.value = "";
+
+            label_GoogleEarthInput.value = "";
+
+            label_DetalleIncInput.value = "";
+
+            label_BTSInput.value = "";
+
+            labelIDInput.value = "";
+
+            resultadoOutput.innerHTML = "";
+
+          }
+
+
+
+      function showImagePopupTip(event) {
+
+        event.preventDefault();
+
+        const imagePopupTip = document.getElementById("imagePopupTip");
+
+        imagePopupTip.style.display = "block";
+
+        return false;
+
       }
 
-      function copiarResultado() {
-        const resultadoTexto = resultadoOutput.innerText.trim();
-        const textarea = document.createElement("textarea");
-        textarea.value = resultadoTexto;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-        alert("Resultado copiado al portapapeles");
+
+
+      function hideImagePopupTip() {
+
+        const imagePopupTip = document.getElementById("imagePopupTip");
+
+        imagePopupTip.style.display = "none";
+
       }
 
 
-      function limpiarInputs() {
-        label0Input.value = "";
-        label0_1Input.value = "";
 
-        label_LineaInput.value = "";
-        label_PlanInput.value = "";
-        label_FechaHoraInput.value = "";
-        label_CoberturaInput.value = "";
-        label_BarraSeñalInput.value = "";
-        label_TipoInconvenienteInput.value = "";
-        label_EstadoLineaInput.value = "";
-        label_ParametrosInput.value = "";
-        label_DireccionInput.value = "";
-        label_GoogleEarthInput.value = "";
-        label_DetalleIncInput.value = "";
-        labelIDInput.value = "";
-        resultadoOutput.innerHTML = "";
+      function showImagePopupLimiteMB(event) {
+
+        event.preventDefault();
+
+        const imagePopupLimiteMB = document.getElementById("imagePopupLimiteMB");
+
+        imagePopupLimiteMB.style.display = "block";
+
+        return false;
+
       }
 
-    // Función para mostrar la ventana emergente de la imagen
-    function showImagePopup(event) {
-      event.preventDefault();
-      const imagePopup = document.getElementById("imagePopup");
-      imagePopup.style.display = "block";
-      return false;
-    }
 
-    // Función para ocultar la ventana emergente de la imagen
-    function hideImagePopup() {
-      const imagePopup = document.getElementById("imagePopup");
-      imagePopup.style.display = "none";
-    }
 
-    </script>
-  </body>
-</html>
+      function hideImagePopupLimiteMB() {
+
+        const imagePopupLimiteMB = document.getElementById("imagePopupLimiteMB");
+
+        imagePopupLimiteMB.style.display = "none";
+
+      }
+
+
+
+      function showImagePopupIMEI(event) {
+
+        event.preventDefault();
+
+        const imagePopupIMEI = document.getElementById("imagePopupIMEI");
+
+        imagePopupIMEI.style.display = "block";
+
+        return false;
+
+      }
+
+
+
+      function hideImagePopupIMEI() {
+
+        const imagePopupIMEI = document.getElementById("imagePopupIMEI");
+
+        imagePopupIMEI.style.display = "none";
+
+      }
+
+
+
+      function showImagePopupNavegacion(event) {
+
+        event.preventDefault();
+
+        const imagePopupNavegacion = document.getElementById("imagePopupNavegacion");
+
+        imagePopupNavegacion.style.display = "block";
+
+        return false;
+
+      }
+
+
+
+      function hideImagePopupNavegacion() {
+
+        const imagePopupNavegacion = document.getElementById("imagePopupNavegacion");
+
+        imagePopupNavegacion.style.display = "none";
+
+      }
+
+
+
+      function showImagePopupMarca(event) {
+
+        event.preventDefault();
+
+        const imagePopupMarca = document.getElementById("imagePopupMarca");
+
+        imagePopupMarca.style.display = "block";
+
+        return false;
+
+      }
+
+
+
+      function hideImagePopupMarca() {
+
+        const imagePopupMarca = document.getElementById("imagePopupMarca");
+
+        imagePopupMarca.style.display = "none";
+
+      }
+
+
+
+      function showImagePopupBarring(event) {
+
+        event.preventDefault();
+
+        const imagePopupBarring = document.getElementById("imagePopupBarring");
+
+        imagePopupBarring.style.display = "block";
+
+        return false;
+
+      }
+
+
+
+      function hideImagePopupBarring() {
+
+        const imagePopupBarring = document.getElementById("imagePopupBarring");
+
+        imagePopupBarring.style.display = "none";
+
+      }
+
+
+
+      function showImagePopupMaps(event) {
+
+        event.preventDefault();
+
+        const imagePopupMaps = document.getElementById("imagePopupMaps");
+
+        imagePopupMaps.style.display = "block";
+
+        return false;
+
+      }
+
+
+
+      function hideImagePopupMaps() {
+
+        const imagePopupMaps = document.getElementById("imagePopupMaps");
+
+        imagePopupMaps.style.display = "none";
+
+      }
+
+  </script>
+
+</body>
+
+</html> 
 
