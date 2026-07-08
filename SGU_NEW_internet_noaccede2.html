@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pedido SGU - Internet - No accede</title>
+    <style>
+        /* --- REGLA MAESTRA PARA ALINEACIÓN PERFECTA --- */
+        *, *::before, *::after {
+            box-sizing: border-box !important;
+            font-family: Calibri, Arial, sans-serif !important;
+        }
+
+        body {  
+            background-color: #ffffff;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .container {
+            width: 96%; 
+            max-width: 1200px; 
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
+            padding: 20px 50px; 
+            position: relative;
+        }
+
+        /* --- TÍTULO --- */
+        .elegant-title {
+            text-align: center;
+            color: #1d1d1f;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .icon-animation {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background-color: #0c477e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 2s linear infinite;
+        }
+
+        .icon-animation::before {
+            content: "🟡";
+            font-size: 1.2rem;
+            color: white;
+        }
+
+      @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+      }
+
+      /* --- ESPACIADO Y ALINEACIÓN PERFECTA DE CAMPOS --- */
+      .input-container {
+          display: flex;
+          align-items: center;
+          position: relative;
+          margin-bottom: 6px; 
+          width: 100%;
+      }
+
+      .input-container label {
+        flex: 0 0 45%; 
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding-right: 10px; 
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .input-container input, .input-container select {
+          flex: 1; 
+          padding: 4px 8px; 
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 0.95rem;
+          color: #0c477e;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .input-container input:focus, .input-container select:focus {
+          border-color: #0c477e;
+          outline: none;
+          box-shadow: 0 0 5px rgba(12, 71, 126, 0.4);
+      }
+
+      /* --- CLASE PARA RESALTAR ERRORES EN ROJO --- */
+      .input-error {
+          border: 1px solid #d93025 !important;
+          background-color: #fce8e6 !important;
+          box-shadow: 0 0 4px rgba(217, 48, 37, 0.3) !important;
+      }
+
+      @media screen and (max-width: 600px) {
+        .input-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .input-container label {
+          flex: none;
+          width: 100%;
+          margin-bottom: 4px;
+          padding-right: 0;
+        }
+        .input-container input, .input-container select {
+          flex: none;
+          width: 100%;
+        }
+      }
+
+      .resultado-label {
+        color: #0c477e;
+        font-weight: bold;
+      }
+
+      .ruta-container {
+          background-color: #fff5e9;
+          padding: 10px;
+          border-radius: 6px;
+          margin: 10px 0;
+          border-left: 4px solid #fd8261;
+          font-size: 0.9rem;
+          color: #333;
+      }
+
+      hr {
+          border: 1px solid #fd8261;
+          margin: 10px 0;
+      }
+
+      /* Botones principales de acción */
+      .btn-principal {
+          background-color: #0c477e; 
+          color: white;
+          padding: 8px 18px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: bold;
+          font-size: 0.95rem;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          margin: 5px 5px 5px 0;
+      }
+
+      .btn-principal:hover {
+          background-color: #08325a;
+          transform: translateY(-1px);
+      }
+
+      .btn-principal:active {
+          transform: translateY(0);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* --- BOTONES PEQUEÑOS EN FORMULARIO --- */
+      .btn-accion {
+          background-color: #f1f3f4;
+          color: #0c477e;
+          border: 1px solid #cdd0d5;
+          padding: 3px 8px;
+          border-radius: 12px;
+          cursor: pointer;
+          font-size: 0.8rem;
+          font-weight: bold;
+          text-decoration: none;
+          transition: all 0.2s ease;
+      }
+      
+      .btn-accion:hover {
+          background-color: #e2e6ea;
+          border-color: #0c477e;
+      }
+
+      .btn-gsm {
+          background-color: #fd8261;
+          color: white;
+          border: none;
+          padding: 3px 10px;
+          border-radius: 12px;
+          cursor: pointer;
+          font-size: 0.8rem;
+          font-weight: bold;
+          transition: all 0.2s ease;
+          box-shadow: 0 2px 4px rgba(253, 130, 97, 0.3);
+      }
+
+      .btn-gsm:hover {
+          background-color: #e66a48;
+          transform: translateY(-1px);
+      }
+
+      /* --- TOOLTIP PARA LA CAJA DE SELECCIÓN (HOVER) --- */
+      .tooltip-wrapper {
+          position: relative;
+          flex: 1; 
+          display: flex;
+      }
+
+      .tooltip-wrapper select {
+          width: 100%;
+          cursor: pointer; /* Cambiado a pointer para interacción natural */
+      }
+
+      /* GLOBO FLOTANTE AJUSTADO PARA NO ROBAR CLICS */
+      .tooltip-text {
+          visibility: hidden;
+          width: 620px; 
+          background-color: #1d1d1f;
+          color: #ffffff;
+          text-align: left;
+          border-radius: 10px;
+          padding: 18px 25px;
+          position: absolute;
+          z-index: 999; 
+          top: calc(100% + 12px); /* Separación exacta por debajo */
+          left: 50%;
+          transform: translateX(-50%);
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          font-size: 0.85rem;
+          font-weight: normal;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+          pointer-events: none; /* Desactivado por defecto para no bloquear nada */
+          line-height: 1.5;
+      }
+
+      /* Puente invisible de tamaño exacto */
+      .tooltip-text::before {
+          content: "";
+          position: absolute;
+          bottom: 100%;
+          left: 0;
+          width: 100%;
+          height: 12px; /* Mide exactamente la separación (12px), sin invadir el select */
+          background-color: transparent;
+      }
+
+      /* Flechita decorativa */
+      .tooltip-text::after {
+          content: "";
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          margin-left: -6px;
+          border-width: 6px;
+          border-style: solid;
+          border-color: transparent transparent #1d1d1f transparent;
+      }
+
+      .tooltip-text strong {
+          color: #fd8261;
+          font-size: 0.95rem;
+      }
+      
+      .tooltip-text .btn-accion {
+          padding: 2px 8px;
+          font-size: 0.75rem;
+          margin-left: 5px;
+      }
+
+      /* Animación del hover */
+      .tooltip-wrapper:hover .tooltip-text,
+      .tooltip-text:hover {
+          visibility: visible;
+          opacity: 1;
+          pointer-events: auto; /* Permite dar clic a los botones internos solo cuando ya está visible */
+      }
+
+      #resultado {
+          margin: 10px 0;
+          font-size: 0.95rem;
+          background-color: #f8f9fa;
+          padding: 12px;
+          border-left: 4px solid #0c477e;
+          border-radius: 0 6px 6px 0;
+          white-space: pre-line;
+          min-height: 40px;
+          
+          user-select: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+      }
+
+      /* --- ESTADOS DE AVISO BOTÓN (VERDE / ROJO) --- */
+      #aviso-status {
+          margin: 8px 0;
+          padding: 10px;
+          border-radius: 6px;
+          font-weight: bold;
+          font-size: 0.9rem;
+          display: none;
+      }
+      .aviso-exito {
+          background-color: #e6f4ea;
+          color: #137333;
+          border: 1px solid #137333;
+      }
+      .aviso-error {
+          background-color: #fce8e6;
+          color: #c5221f;
+          border: 1px solid #c5221f;
+      }
+
+      .footer-autor {
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 0.8rem;
+        color: #888;
+        border-top: 1px solid #eee;
+        user-select: none;
+      }
+      .footer-autor strong {
+        color: #0c477e;
+      }
+
+      .code-container p {
+          margin: 5px 0 15px 0;
+          font-size: 0.95rem;
+      }
+
+      /* --- POPUPS DE IMÁGENES INTERNOS --- */
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.85);
+        text-align: center;
+        z-index: 1000;
+        backdrop-filter: blur(4px);
+      }
+
+      .popup-overlay img {
+        max-width: 90%;
+        max-height: 85vh;
+        margin-top: 5vh;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      }
+
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #ffffff;
+        color: #c5221f;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: transform 0.2s ease;
+      }
+      .close-button:hover {
+          transform: scale(1.05);
+      }
+
+    </style>
+</head>
+<body oncontextmenu="return false"> 
+  
+  <div class="container">
+    <div class="icon-animation"></div>
+
+    <h2 class="elegant-title">Pedido SGU: No accede - Desconexiones</h2>
+
+    <label style="color: red; font-size: 1.1rem;"><strong>1. Plantilla:</strong></label><br><br>
+
+    <center class="code-container">
+    <p>
+<input type="number" id="label0" oninput="checkLength(this)" placeholder="(Número del que llama)" style="text-align: center; font-weight: bold; width: 160px; color: #0c477e; border: 1px solid #ccc; padding: 4px; border-radius: 4px;" />
+// El cliente no puede conectarse a internet en ningún momento, sin importar la red.
+// "Se genera incidencia a BO123"
+    </p>
+    </center>
+
+    <div class="input-container">
+    <label for="label_Linea">- Número de consulta:</label>
+    <input type="text" id="label_Linea" placeholder="(Número del inconveniente)" />
+    </div>
+
+    <div class="input-container">
+      <label for="label_MB">- Tiene MB o data ilimitada para navegar (Si/No):</label>
+      <select id="label_MB">
+        <option value="">Seleccionar</option>
+        <option value="Si">Si</option>
+      </select>
+    </div>
+
+    <div class="input-container">
+    <label for="label_LimiteMB">- Fecha limite de uso de MB: 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupLimiteMB')">👉Ver ejemplo👈</button>
+    </label>
+    <input type="text" id="label_LimiteMB" placeholder="(Fecha de expiración en PCRF u OCS)" />
+    </div>
+
+    <div id="imagePopupLimiteMB" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupLimiteMB')">CERRAR</button>
+    <img src="https://i.postimg.cc/qBmz2Jpr/Pedido-SGU-Internet-No-accede-Sistema-Limite-MB.png">
+    </div>
+
+    <div class="input-container">
+    <label for="label_IMEI">- Existe cambio de IMEI?: 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupIMEI')">👉Ver ejemplo👈</button>
+    </label>
+    <select id="label_IMEI">
+      <option value="">Seleccionar</option>
+      <option value="Si">Si</option>
+      <option value="No">No</option>
+      <option value="-">-</option>
+    </select>
+    </div>
+
+    <div id="imagePopupIMEI" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupIMEI')">CERRAR</button>
+    <img src="https://i.postimg.cc/W4bMs9n6/Pedido-SGU-Internet-No-accede-Sistema-IMEI.png">
+    </div>
+
+    <div class="input-container">
+    <label for="label_FechaNoaccede">- Fecha desde cuando no accede:</label>
+    <input type="text" id="label_FechaNoaccede" placeholder="(DD/MM/AAAA)" />
+    </div>
+
+    <div class="input-container">
+    <label for="label_FechaNavegacion">- Fecha y hora de la ultima navegacion segun consumo: 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupNavegacion')">👉Ver ejemplo👈</button>
+    </label>
+    <input type="text" id="label_FechaNavegacion" placeholder="(Pegar lo que sale en plantilla de customer care)" />
+    </div>
+
+    <div id="imagePopupNavegacion" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupNavegacion')">CERRAR</button>
+    <img src="https://i.postimg.cc/252JcZ12/Pedido-SGU-Internet-No-accede-Sistema-Ult-Navegacion.png">
+    </div>
+
+    <div class="input-container">
+    <label for="label_Marca">- Marca y modelo de equipo: 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupMarca')">👉Ver ejemplo👈</button>
+    </label>
+    <input type="text" id="label_Marca" placeholder="(Pegar lo que sale en plantilla de customer care)" />
+    </div>
+
+    <div id="imagePopupMarca" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupMarca')">CERRAR</button>
+    <img src="https://i.postimg.cc/rw2vKc6C/Pedido-SGU-Internet-No-accede-Sistema-Marca.png">
+    </div>
+
+    <div class="input-container">
+      <label for="label_Cobertura">
+          - Cobertura que presenta problema (3G/4G/5G):
+          <button type="button" class="btn-gsm" style="margin-left: 5px;" onclick="abrirGsmArena()">GSM ARENA</button>
+      </label>
+      
+      <!-- TOOLTIP WRAPPER SOBRE EL SELECT -->
+      <div class="tooltip-wrapper">
+          <select id="label_Cobertura">
+            <option value="">Seleccionar</option>
+           <option value="5G">5G</option>
+           <option value="4G LTE">4G | LTE</option>
+            <option value="3G">3G | 3.5G | H | H+</option>
+            <option value="E">E</option>
+            <option value="-">-</option>
+          </select>
+          
+
+<div class="tooltip-text">
+<strong>📶 Ver si equipo es compatible con 5G</strong><br><br>
+
+<strong>#1. Ver EIR:</strong> Para identificar marca y modelo. <button type="button" class="btn-accion" onclick="abrirPopupDrive('https://drive.google.com/file/d/10twFW6OobvFl7siWZH9HsQmvWIJB70wF/view?usp=sharing')">👉Ver ejemplo👈</button>
+<br>
+
+<strong>#2. Abrimos GSM ARENA:</strong> Para buscar las bandas del equipo. <button type="button" class="btn-accion" onclick="abrirPopupDrive('https://drive.google.com/file/d/1xh2DMfS5_PYY0tWKVnh6kD-IoahDbGRH/view?usp=sharing')">👉Ver ejemplo👈</button> <button type="button" class="btn-gsm" style="margin-left: 5px;" onclick="abrirGsmArena()">Abrir</button>
+<br><br>
+
+👉 n66 (1700 / 2100 MHz)<br>
+👉 n78 (3500 MHz)<br><br>
+
+<span style="color: #4caf50; font-weight: bold;">✅ EQUIPO SI TIENE LAS BANDAS</span><br>
+😃 Continuamos con el Pedido SGU<br><br>
+
+<span style="color: #fd8261; font-weight: bold;">❌ EQUIPO NO TIENE LAS BANDAS</span> <br>
+😭 No se continua con Pedido SGU de 5G, solo se informa que el equipo no es compatible.<br><br>
+
+<strong>⚙️ Tipificación:</strong> <button type="button" class="btn-accion" onclick="abrirPopupDrive('https://drive.google.com/file/d/1gHYHoegj2NimfgHSKipBTWjDwx6P5oKU/view?usp=sharing')">👉Ver ejemplo👈</button><br>
+Other / Información / Información / Información comercial 5G / 5G / No puede acceder equipo no compatible 5G<br><br>
+
+<strong>✍️ Comentario:</strong><br>
+Número del que llama // Cliente menciona que no puede conectarse a internet en 5G // Equipo no compatible // $$_ID DE LLAMADA_&&<br><br>
+
+<span style="color: #ccc; font-size: 0.8rem;">Importante: Si el cliente menciona que tiene problema también con las otras coberturas 4G / 3G, podemos continuar con el SGU y seleccionamos la opción correcta.</span>
+</div>
+</div>
+</div>
+
+    <div class="input-container">
+    <label for="label_Barring">- Parámetros correctos (Barring) (Si/No): 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupBarring')">👉Ver ejemplo👈</button>
+    </label>
+    <select id="label_Barring">
+        <option value="">Seleccionar</option>
+        <option value="Si">Si</option>
+    </select>
+    </div>
+
+    <div id="imagePopupBarring" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupBarring')">CERRAR</button>
+    <img src="https://i.postimg.cc/hGK4Q6z6/Pedido-SGU-Internet-No-accede-Sistema-Barring.png">
+    </div>
+
+    <div class="input-container">
+    <label for="label_Direccion">- Dirección exacta del inconveniente: </label>
+    <input type="text" id="label_Direccion" placeholder="(Ejemplo: Calle Garcia Robles Mz B Lote 35 Urb Reducto)" />
+    </div>
+
+    <div class="input-container">
+    <label for="label_GoogleEarth">- Coordenadas Google Earth: 
+        <button type="button" class="btn-accion" onclick="return showPopup('imagePopupMaps')">👉Ver ejemplo👈</button>
+    </label>
+    <input type="text" id="label_GoogleEarth" placeholder="(Ejemplo: -12.111846867998418, -77.00713689016001)">
+    </div>
+
+    <div id="imagePopupMaps" class="popup-overlay">
+    <button class="close-button" onclick="hidePopup('imagePopupMaps')">CERRAR</button>
+    <img src="https://i.postimg.cc/fyJXFWkg/Google-Maps.png">
+    </div>
+
+    <div class="input-container">
+    <label for="label_DetalleInc">- Observaciones: </label>
+    <input type="text" id="label_DetalleInc" placeholder="(Observaciones del inconveniente)" />
+    </div>
+
+    <div class="input-container">
+    <label for="label_BTS">- BTS: </label>
+    <input type="text" id="label_BTS" placeholder="(BTS de la línea)" />
+    </div>
+
+    <div class="input-container">
+    <label for="labelID">- Codigo de llamada:</label>
+    <input type="text" id="labelID" placeholder="(Sin $$_ _&&)" />
+    </div>
+
+    <br>
+    
+    <p id="resultado"></p>
+    <div id="aviso-status"></div>
+
+    <button class="btn-principal" onclick="copiarResultado()">Copiar</button>
+    <button class="btn-principal" onclick="limpiarInputs()">Borrar</button>
+
+    <br />
+    <br />
+    <br />
+
+    <label style="color: red; font-size: 1.1rem;"><strong>2. Tipificación:</strong></label>
+
+<div class="ruta-container">
+- <strong>Address:</strong> DIRECCIÓN DEL PROBLEMA, REFERENCIA DEL PROBLEMA, LUG@R: DEPARTAMENTO - PROVINCIA - DISTRITO
+
+<br><br>
+
+- <strong>Ruta:</strong> No full internet access / Pedido SGU / Pedido SGU / Problemas SGU / Calidad / Sin servicio y está al día en sus pagos (con check a BO ✅) 
+<button type="button" class="btn-accion" onclick="return showPopup('imagePopupTip')">👉Ver ejemplo👈</button>
+
+<div id="imagePopupTip" class="popup-overlay">
+<button class="close-button" onclick="hidePopup('imagePopupTip')">Cerrar</button>
+<img src="https://i.postimg.cc/yNSkVrd2/Pedido-SGU-Internet-No-accede.png" alt="Imagen de vista previa 1">
+</div>
+</div>
+
+<br />
+
+<label style="color: red; font-size: 1.1rem;"><strong>3. Speech:</strong></label>
+
+<div class="ruta-container">
+<strong><span style="color: #0c477e">🎧 Agente: </span></strong> <span style="color: #0c477e">(Nombre del cliente)</span>, le confirmamos que hemos recibido y registrado su pedido con el código <span style="color: #0c477e">(CASSXXXXXXXXXX) o (CAPVXXXXXXXXXX)</span>. El plazo estimado de atención es de 03 días calendario. Nuestra respuesta será enviada vía mensaje de texto en 1 día hábil luego del plazo de atención.
+</div>
+
+<br><br><br>
+
+<strong>Ejemplo de código para Pedido SGU:</strong>
+<br><br>
+<img src="https://i.postimg.cc/Y2FYwHwH/COD-Pedido-SGU.png" style="max-width: 100%; border-radius: 8px;">
+
+<br><br><br><br>
+<div class="footer-autor">
+    Developed by Cristhian Francia &copy; 2026 | All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    // Protecciones
+    document.addEventListener('contextmenu', event => {
+        event.preventDefault();
+        alert('El menú contextual (clic derecho) está deshabilitado.'); 
+    });
+
+    document.onkeydown = function(e) {
+        if (e.key === 'F12' || e.keyCode === 123) {
+            alert('Las herramientas de desarrollador están deshabilitadas.'); 
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.key === 'I' || e.keyCode === 74 || e.key === 'J' || e.keyCode === 67 || e.key === 'C')) {
+            return false;
+        }
+        if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+            return false;
+        }
+    };
+
+    window.onload = function() {
+        let fechaLimite = new Date("2026-10-30T23:59:59");
+        let fechaActual = new Date();
+        if (fechaActual > fechaLimite) {
+            document.body.innerHTML = "<h1 style='text-align:center; color:red; margin-top:20%; font-family: Calibri, sans-serif;'>Revisar la variable de mantenimiento<br></h1><h5 style='text-align:center; color:red; font-family: Calibri, sans-serif;'>(Requiere actualización)</h5>";
+        }
+    };
+
+    const inputsArray = [
+        document.querySelector("#label0"),
+        document.querySelector("#label_Linea"),
+        document.querySelector("#label_MB"),
+        document.querySelector("#label_LimiteMB"),
+        document.querySelector("#label_IMEI"),
+        document.querySelector("#label_FechaNoaccede"),
+        document.querySelector("#label_FechaNavegacion"),
+        document.querySelector("#label_Marca"),
+        document.querySelector("#label_Cobertura"),
+        document.querySelector("#label_Barring"),
+        document.querySelector("#label_Direccion"),
+        document.querySelector("#label_GoogleEarth"),
+        document.querySelector("#label_DetalleInc"),
+        document.querySelector("#label_BTS"),
+        document.querySelector("#labelID")
+    ];
+
+    const resultadoOutput = document.querySelector("#resultado");
+    const avisoStatus = document.querySelector("#aviso-status");
+
+    // Asignar eventos globales
+    inputsArray.forEach(input => {
+        const updateEvent = input.tagName === 'SELECT' ? 'change' : 'input';
+        
+        input.addEventListener(updateEvent, function() {
+            this.classList.remove('input-error'); 
+            updateResultadoOutput(); 
+        });
+    });
+
+    // Lógica para detectar selección de 5G y ABRIR GSM ARENA automáticamente
+    document.querySelector("#label_Cobertura").addEventListener('change', function() {
+        if (this.value === '5G') {
+            abrirGsmArena();
+        }
+    });
+
+    function updateResultadoOutput() {
+        const valores = inputsArray.map(input => input.value);
+        
+        resultadoOutput.innerHTML =`<span class="resultado-label">${valores[0]}</span> // El cliente no puede conectarse a internet en ningún momento, sin importar la red. // "Se genera incidencia a BO123"
+
+Número de consulta: <span class="resultado-label">${valores[1]}</span>
+Tiene MB o data ilimitada para navegar (Si/No): <span class="resultado-label">${valores[2]}</span>
+Fecha limite de uso de MB: <span class="resultado-label">${valores[3]}</span>
+Existe cambio de IMEI?: <span class="resultado-label">${valores[4]}</span>
+Fecha desde cuando no accede: <span class="resultado-label">${valores[5]}</span>
+Fecha y hora de la ultima navegacion segun consumo: <span class="resultado-label">${valores[6]}</span>
+Marca y modelo de equipo: <span class="resultado-label">${valores[7]}</span>
+Cobertura que presenta problema (3G/4G/5G): <span class="resultado-label">${valores[8]}</span>
+Parámetros correctos (Barring) (Si/No): <span class="resultado-label">${valores[9]}</span>
+Dirección exacta del inconveniente: <span class="resultado-label">${valores[10]}</span>
+Coordenadas Google Earth: <span class="resultado-label">${valores[11]}</span>
+Observaciones: <span class="resultado-label">${valores[12]}</span>
+BTS: <span class="resultado-label">${valores[13]}</span>
+Codigo de llamada: $$_<span class="resultado-label">${valores[14]}</span>_&&`;
+    }
+
+      function checkLength(input) {
+        if (input.value.length > 9) {
+          input.value = input.value.slice(0, 9);
+        }
+      }
+
+      function copiarResultado() {
+          let hayErrores = false;
+          inputsArray.forEach(input => {
+              if (!input.value.trim()) {
+                  input.classList.add('input-error');
+                  hayErrores = true;
+              } else {
+                  input.classList.remove('input-error');
+              }
+          });
+
+          if (hayErrores) {
+              avisoStatus.textContent = "❌ Error: Faltan datos obligatorios. Por favor completa los campos resaltados en rojo.";
+              avisoStatus.className = "aviso-error";
+              avisoStatus.style.display = "block";
+              return;
+          }
+
+          const resultadoTexto = resultadoOutput.innerText.trim();
+          const textarea = document.createElement("textarea");
+          textarea.value = resultadoTexto;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+          
+          avisoStatus.textContent = "✅ ¡Copiado excelente! Los datos se han estructurado de forma correcta en el portapapeles.";
+          avisoStatus.className = "aviso-exito";
+          avisoStatus.style.display = "block";
+      }
+
+      function limpiarInputs() {
+        inputsArray.forEach(input => {
+            input.value = "";
+            input.classList.remove('input-error'); 
+        });
+        
+        resultadoOutput.innerHTML = "";
+        avisoStatus.style.display = "none";
+        avisoStatus.innerHTML = "";
+      }
+
+  /* --- POPUPS INTERNOS (IMÁGENES NORMALES) --- */
+  function showPopup(id) {
+    event.preventDefault();
+    document.getElementById(id).style.display = "block";
+    return false;
+  }
+  
+  function hidePopup(id) {
+    document.getElementById(id).style.display = "none";
+  }
+
+  /* --- ABRIR GSM ARENA EN POPUP CENTRADO --- */
+  function abrirGsmArena() {
+      const width = 1000;
+      const height = 700;
+      const left = (window.screen.width / 2) - (width / 2);
+      const top = (window.screen.height / 2) - (height / 2);
+      window.open('https://www.gsmarena.com/', 'GSMArenaPopup', `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,location=no`);
+  }
+
+  /* --- ABRIR ENLACES DE GOOGLE DRIVE EN POPUP CENTRADO --- */
+  function abrirPopupDrive(url) {
+      const width = 1000;
+      const height = 700;
+      const left = (window.screen.width / 2) - (width / 2);
+      const top = (window.screen.height / 2) - (height / 2);
+      window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left},resizable=yes,scrollbars=yes,status=no,location=no`);
+  }
+
+  </script>
+</body>
+</html>
